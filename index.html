@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Tối Ưu Năng Suất Cho Ngày Làm Việc 14 Giờ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #F8F9FA;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #FDC435;
+        }
+    </style>
+</head>
+<body class="text-[#232323]">
+    
+    <!-- 
+    Palette Name: Energetic & Playful
+    Analysis Plan Summary:
+    1.  Introduction/Hook: Visualize the 14-hour workday and its core challenge using a donut chart and large numbers.
+    2.  Data Overview/The Conflict: Compare the distinct demands of the "Corporate Job" and "Content Creation" using styled cards.
+    3.  Key Strategies - Time Management: Detail strategic frameworks. Use an HTML/CSS grid for the Eisenhower Matrix and a custom timeline for Time Blocking.
+    4.  Key Strategies - Creative Workflow: Illustrate the content batching process with an HTML/CSS flowchart and a bar chart showing efficiency gains.
+    5.  Key Strategies - Energy Management: Use a radar chart for a balanced energy profile and cards with Unicode icons for actionable tips on nutrition, exercise, and rest.
+    6.  Conclusion: Summarize key takeaways in a final, actionable list.
+
+    Visualization Choices Summary:
+    * Daily Time Split: Donut Chart (Chart.js) - Goal: Inform. Justification: Best for showing part-to-whole relationships (14h work vs 10h personal). NO SVG.
+    * Job Role Comparison: HTML/CSS Cards - Goal: Compare. Justification: Clear, side-by-side textual and iconic comparison. NO SVG.
+    * Eisenhower Matrix: HTML/CSS Grid - Goal: Organize. Justification: Native 2x2 structure is perfect for this framework. NO SVG.
+    * Time Blocking Schedule: HTML/CSS Timeline - Goal: Organize/Change. Justification: Intuitive chronological representation of a daily plan. NO SVG.
+    * Content Workflow: HTML/CSS Flowchart - Goal: Organize. Justification: Divs, borders, and flexbox create a clear process flow without images or complex scripts. NO SVG, NO MERMAID JS.
+    * Efficiency Gain: Bar Chart (Chart.js) - Goal: Compare. Justification: Ideal for showing a before/after comparison to highlight the value of batching. NO SVG.
+    * Energy Balance: Radar Chart (Chart.js) - Goal: Relationships/Compare. Justification: Effectively shows the balance and interconnectedness of multiple wellness factors. NO SVG.
+    
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All diagrams and charts are implemented using Chart.js (Canvas) or structured HTML/CSS with Tailwind.
+    -->
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#004FFF] mb-2">Chinh Phục Ngày Làm Việc 14 Giờ</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Chiến lược toàn diện để cân bằng công việc công ty & sáng tạo nội dung mà không kiệt sức.</p>
+        </header>
+
+        <section id="challenge" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#E94F37] mb-6">Thử Thách Phân Bổ Thời Gian</h2>
+                <p class="text-center text-gray-700 mb-8 max-w-2xl mx-auto">Một ngày có 24 giờ. Với 14 giờ dành cho công việc, việc quản lý 10 giờ còn lại cho nghỉ ngơi, sức khỏe và cuộc sống cá nhân trở thành một bài toán tối quan trọng.</p>
+                <audio src="Sound/14 Tiếng Mỗi Ngày_ Bí Quyết Năng Suất Đỉnh Cao Hay Đánh Đổi Vô Hình_.mp3" type="audio/mp3" controls>
+                    
+                </audio>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center">
+                        <div class="text-8xl font-extrabold text-[#004FFF]">14</div>
+                        <div class="text-2xl font-bold text-gray-800">Giờ Làm Việc/Ngày</div>
+                        <div class="mt-4 space-y-2">
+                            <p class="text-lg bg-blue-100 text-blue-800 rounded-full px-4 py-1 inline-block">🏢 10 giờ - Công ty</p>
+                            <p class="text-lg bg-yellow-100 text-yellow-800 rounded-full px-4 py-1 inline-block">💡 4 giờ - Sáng tạo Nội dung</p>
+                        </div>
+                    </div>
+                    <div class="chart-container h-72 md:h-80">
+                        <canvas id="timeSplitChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roles" class="mb-16">
+             <h2 class="text-3xl font-bold text-center text-[#46B28F] mb-6">Hai Thế Giới Công Việc</h2>
+             <p class="text-center text-gray-700 mb-8 max-w-2xl mx-auto">Công việc công ty và sáng tạo nội dung đòi hỏi những chế độ tư duy và năng lượng khác nhau. Hiểu rõ sự khác biệt này là chìa khóa để giảm "chi phí chuyển đổi" nhận thức.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-bold text-[#004FFF] mb-4">🏢 Vai Trò Tại Công Ty (10 giờ)</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="mr-3 text-xl">📋</span> <div><strong class="text-gray-900">Tính cấu trúc cao:</strong> Bị chi phối bởi lịch họp, deadline và các quy trình định sẵn.</div></li>
+                        <li class="flex items-start"><span class="mr-3 text-xl">🤝</span> <div><strong class="text-gray-900">Tính hợp tác:</strong> Đòi hỏi tương tác và phối hợp liên tục với đồng nghiệp, cấp trên.</div></li>
+                        <li class="flex items-start"><span class="mr-3 text-xl">⚡️</span> <div><strong class="text-gray-900">Tính phản ứng:</strong> Thường xuyên phải xử lý các yêu cầu, email và vấn đề phát sinh đột xuất.</div></li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-bold text-[#FDC435] mb-4">💡 Vai Trò Sáng Tạo (4 giờ)</h3>
+                     <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="mr-3 text-xl">🧠</span> <div><strong class="text-gray-900">Tính phi cấu trúc:</strong> Cần không gian tự do để lên ý tưởng, nghiên cứu và thử nghiệm.</div></li>
+                        <li class="flex items-start"><span class="mr-3 text-xl">🧘</span> <div><strong class="text-gray-900">Làm việc sâu (Deep Work):</strong> Yêu cầu sự tập trung cao độ, không bị gián đoạn để tạo ra sản phẩm chất lượng.</div></li>
+                         <li class="flex items-start"><span class="mr-3 text-xl">🎯</span> <div><strong class="text-gray-900">Tính chủ động:</strong> Tự đặt ra mục tiêu, lên kế hoạch và thúc đẩy bản thân hoàn thành.</div></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="strategies" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10">Bộ Công Cụ Quản Lý Thời Gian Chiến Lược</h2>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 mb-12">
+                <h3 class="text-2xl font-bold text-[#E94F37] mb-4">1. Ma Trận Eisenhower: Ưu Tiên Hóa Nhiệm Vụ</h3>
+                <p class="text-gray-700 mb-6">Phân loại mọi công việc vào 4 nhóm để quyết định điều gì cần làm ngay, điều gì cần lên lịch, ủy quyền hoặc loại bỏ. Điều này giúp bạn tập trung năng lượng vào những việc thực sự quan trọng.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-white text-center">
+                    <div class="bg-[#46B28F] p-4 rounded-lg">
+                        <h4 class="font-bold text-lg">Quan trọng & Khẩn cấp</h4>
+                        <p class="text-sm">LÀM NGAY</p>
+                        <p class="text-xs mt-2 italic">(VD: Báo cáo sếp sắp đến hạn, xử lý khủng hoảng khách hàng)</p>
+                    </div>
+                    <div class="bg-[#004FFF] p-4 rounded-lg">
+                        <h4 class="font-bold text-lg">Quan trọng & Không khẩn cấp</h4>
+                        <p class="text-sm">LÊN LỊCH</p>
+                         <p class="text-xs mt-2 italic">(VD: Lên kế hoạch nội dung tháng tới, học kỹ năng mới)</p>
+                    </div>
+                    <div class="bg-[#FDC435] p-4 rounded-lg text-gray-800">
+                        <h4 class="font-bold text-lg">Không quan trọng & Khẩn cấp</h4>
+                        <p class="text-sm">ỦY QUYỀN</p>
+                         <p class="text-xs mt-2 italic">(VD: Trả lời một số email, các cuộc họp không cần thiết)</p>
+                    </div>
+                    <div class="bg-gray-400 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg">Không quan trọng & Không khẩn cấp</h4>
+                        <p class="text-sm">LOẠI BỎ</p>
+                        <p class="text-xs mt-2 italic">(VD: Lướt mạng xã hội vô định, các nhiệm vụ vụn vặt)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                 <h3 class="text-2xl font-bold text-[#004FFF] mb-4">2. Chặn Thời Gian (Time Blocking): Lịch Trình Mẫu</h3>
+                 <p class="text-gray-700 mb-6">Phân chia ngày của bạn thành các khối thời gian chuyên dụng cho từng loại công việc. Điều này tạo ra ranh giới rõ ràng, giảm đa nhiệm và bảo vệ thời gian cho "công việc sâu".</p>
+                <div class="relative border-l-2 border-blue-200 pl-6 space-y-8">
+                    <div class="relative">
+                        <div class="absolute -left-[35px] top-1 h-6 w-6 bg-blue-500 rounded-full border-4 border-white"></div>
+                        <p class="font-bold text-blue-800">7:00 - 8:00</p>
+                        <p class="text-gray-700">Chuẩn bị cá nhân, ăn sáng, xem lại kế hoạch ngày.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[35px] top-1 h-6 w-6 bg-green-500 rounded-full border-4 border-white"></div>
+                        <p class="font-bold text-green-800">8:00 - 12:00</p>
+                        <p class="text-gray-700"><strong>Công ty (Làm việc sâu):</strong> Giải quyết các nhiệm vụ quan trọng, đòi hỏi sự tập trung cao nhất.</p>
+                    </div>
+                     <div class="relative">
+                        <div class="absolute -left-[35px] top-1 h-6 w-6 bg-gray-500 rounded-full border-4 border-white"></div>
+                        <p class="font-bold text-gray-800">12:00 - 13:00</p>
+                        <p class="text-gray-700">Ăn trưa, nghỉ ngơi, đi bộ ngắn, ngắt kết nối hoàn toàn.</p>
+                    </div>
+                     <div class="relative">
+                        <div class="absolute -left-[35px] top-1 h-6 w-6 bg-green-500 rounded-full border-4 border-white"></div>
+                        <p class="font-bold text-green-800">13:00 - 18:00</p>
+                        <p class="text-gray-700"><strong>Công ty (Hợp tác & Hành chính):</strong> Họp, trả lời email, các nhiệm vụ ít đòi hỏi sự tập trung hơn.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[35px] top-1 h-6 w-6 bg-orange-500 rounded-full border-4 border-white"></div>
+                        <p class="font-bold text-orange-800">18:00 - 19:00</p>
+                        <p class="text-gray-700">Thời gian chuyển tiếp: Di chuyển, ăn nhẹ, nghỉ ngơi tinh thần.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[35px] top-1 h-6 w-6 bg-yellow-500 rounded-full border-4 border-white"></div>
+                        <p class="font-bold text-yellow-800">19:00 - 23:00</p>
+                        <p class="text-gray-700"><strong>Sáng tạo nội dung (Làm việc sâu):</strong> Viết, lên ý tưởng, sản xuất video trong môi trường không bị phân tâm.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[35px] top-1 h-6 w-6 bg-indigo-500 rounded-full border-4 border-white"></div>
+                        <p class="font-bold text-indigo-800">23:00 - 7:00</p>
+                        <p class="text-gray-700">Thư giãn, đọc sách, chuẩn bị cho giấc ngủ 7-8 tiếng chất lượng.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="workflow" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10">Tối Ưu Hóa "Nhà Máy" Sáng Tạo Nội Dung</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#46B28F] mb-4">Quy Trình Sản Xuất Theo Lô (Content Batching)</h3>
+                    <p class="text-gray-700 mb-6">Nhóm các công việc tương tự lại với nhau và thực hiện trong một lần để vào "trạng thái dòng chảy" và tăng hiệu quả. Thay vì làm một bài viết từ A-Z, hãy làm tất cả các bước A, rồi tất cả các bước B...</p>
+                    <div class="space-y-4">
+                        <div class="text-center p-4 bg-gray-100 rounded-lg">
+                            <h4 class="font-bold">1. Lên dàn ý (Batching)</h4>
+                            <p class="text-sm">Dành một buổi để lên dàn ý cho 4-5 bài viết.</p>
+                        </div>
+                        <div class="flex justify-center items-center"><span class="flowchart-arrow">↓</span></div>
+                         <div class="text-center p-4 bg-gray-100 rounded-lg">
+                            <h4 class="font-bold">2. Soạn thảo (Batching)</h4>
+                            <p class="text-sm">Dành một buổi khác để viết bản nháp cho tất cả các dàn ý đó.</p>
+                        </div>
+                        <div class="flex justify-center items-center"><span class="flowchart-arrow">↓</span></div>
+                        <div class="text-center p-4 bg-gray-100 rounded-lg">
+                            <h4 class="font-bold">3. Thiết kế & Chỉnh sửa (Batching)</h4>
+                            <p class="text-sm">Tạo tất cả hình ảnh/video, sau đó вычитка tất cả bài viết.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-center text-[#E94F37] mb-4">Hiệu Quả Được Cải Thiện</h3>
+                     <p class="text-gray-700 mb-6 text-center">Sản xuất theo lô và sử dụng công cụ AI giúp giảm đáng kể thời gian chuyển đổi ngữ cảnh, cho phép bạn tạo ra nhiều nội dung chất lượng hơn trong 4 giờ quý giá.</p>
+                    <div class="chart-container h-64 md:h-72">
+                         <canvas id="efficiencyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="energy" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10">Quản Lý Năng Lượng: Nhiên Liệu Cho Năng Suất</h2>
+            <p class="text-center text-gray-700 mb-8 max-w-2xl mx-auto">Quản lý thời gian là vô nghĩa nếu không có năng lượng. Hãy xem việc nghỉ ngơi, dinh dưỡng và vận động là một phần không thể thiếu của công việc.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                 <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                     <h3 class="text-2xl font-bold text-center text-[#004FFF] mb-4">Hồ Sơ Năng Lượng Cân Bằng</h3>
+                     <p class="text-gray-700 mb-6 text-center">Nỗ lực duy trì sự cân bằng giữa các yếu tố cốt lõi để đảm bảo hiệu suất bền vững.</p>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="energyRadarChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h4 class="text-xl font-bold text-[#46B28F] mb-2">🍽️ Dinh Dưỡng</h4>
+                            <p class="text-gray-600">Ăn đủ bữa, ưu tiên protein, ngũ cốc nguyên hạt và uống đủ nước để năng lượng ổn định.</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h4 class="text-xl font-bold text-[#E94F37] mb-2">� Vận Động</h4>
+                            <p class="text-gray-600">Dù chỉ là đi bộ 15 phút hay các bài tập giãn cơ tại chỗ cũng giúp giảm căng thẳng, tăng sự minh mẫn.</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h4 class="text-xl font-bold text-[#004FFF] mb-2">😴 Giấc Ngủ</h4>
+                            <p class="text-gray-600">Ưu tiên 7-8 giờ ngủ chất lượng mỗi đêm. Tránh màn hình trước khi ngủ để phục hồi tốt nhất.</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h4 class="text-xl font-bold text-[#FDC435] mb-2">🧘 Nghỉ Ngơi</h4>
+                            <p class="text-gray-600">Áp dụng các quãng nghỉ ngắn (Pomodoro) và ngắt kết nối hoàn toàn vào cuối tuần để tái tạo năng lượng.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center pt-8 border-t border-gray-200">
+            <p class="text-gray-600">Được tạo ra để giúp bạn làm việc thông minh hơn, không chỉ chăm chỉ hơn.</p>
+            <p class="text-red-600">*** KHÁNH "ĐẸP TRAI NHẤT CÁI KHO Z11" ***</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const vibrantColors = {
+            blue: '#004FFF',
+            yellow: '#FDC435',
+            red: '#E94F37',
+            green: '#46B28F',
+            dark: '#232323',
+            grey: '#D1D5DB'
+        };
+
+        const chartTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        font: {
+                            family: "'Be Vietnam Pro', sans-serif"
+                        }
+                    }
+                }
+            },
+            maintainAspectRatio: false,
+            responsive: true
+        };
+        
+        function wrapLabel(str, maxLen) {
+            if (str.length <= maxLen) {
+                return str;
+            }
+            const words = str.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + word).length > maxLen && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+
+        const timeSplitCtx = document.getElementById('timeSplitChart').getContext('2d');
+        new Chart(timeSplitCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Công việc Công ty', 'Sáng tạo Nội dung', 'Nghỉ ngơi & Cá nhân'],
+                datasets: [{
+                    label: 'Phân Bổ Thời Gian Trong 24 Giờ',
+                    data: [10, 4, 10],
+                    backgroundColor: [vibrantColors.blue, vibrantColors.yellow, vibrantColors.grey],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: chartTooltipOptions
+        });
+
+        const efficiencyCtx = document.getElementById('efficiencyChart').getContext('2d');
+        const efficiencyLabels = ['Nghiên cứu & Lên ý tưởng', 'Soạn thảo & Sản xuất', 'Chỉnh sửa & Xuất bản'];
+        new Chart(efficiencyCtx, {
+            type: 'bar',
+            data: {
+                labels: efficiencyLabels.map(label => wrapLabel(label, 16)),
+                datasets: [
+                    {
+                        label: 'Làm việc truyền thống (giờ)',
+                        data: [4, 6, 3],
+                        backgroundColor: vibrantColors.grey,
+                        borderColor: vibrantColors.grey,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Làm việc theo lô (giờ)',
+                        data: [2.5, 4, 1.5],
+                        backgroundColor: vibrantColors.green,
+                        borderColor: vibrantColors.green,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: { ...chartTooltipOptions, scales: { y: { beginAtZero: true } } }
+        });
+        
+        const energyRadarCtx = document.getElementById('energyRadarChart').getContext('2d');
+        new Chart(energyRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Dinh Dưỡng', 'Vận Động', 'Giấc Ngủ', 'Nghỉ Ngơi Tinh Thần', 'Tập Trung Sâu'],
+                datasets: [{
+                    label: 'Hồ sơ năng lượng lý tưởng',
+                    data: [8, 7, 9, 8, 9],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 79, 255, 0.2)',
+                    borderColor: vibrantColors.blue,
+                    pointBackgroundColor: vibrantColors.blue,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: vibrantColors.blue
+                }]
+            },
+            options: {
+                ...chartTooltipOptions,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: '#e2e8f0'
+                        },
+                        grid: {
+                            color: '#e2e8f0'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                family: "'Be Vietnam Pro', sans-serif"
+                            },
+                            color: vibrantColors.dark
+                        },
+                        ticks: {
+                            backdropColor: '#F8F9FA',
+                            color: '#6b7280'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
+�
